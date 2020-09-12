@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+
+<!-- header part -->
+{% block header %}
+	<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center" style="background-color: #e9ecef;">
+	  <h1 class="display-4">Watched</h1>
+	</div>
+{% endblock %}
+
+
+<!-- movies part -->
+{% block movie %}
+
+		<!-- jinja2 for loop to add all the watched (ismovies = True) -->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+		  <div class="container-xl">
+		    <a class="navbar-brand" href="#"><h3>Movies</h3></a>
+		      <form class="form-inline mt-2 mt-md-0" action="/add/watched/movie" method='POST'>
+		        <input class="form-control mr-sm-2" type="text" name="title" placeholder="Movie name" aria-label="Add movie">
+		        <button class="btn btn-success" type="submit">Add movie</button>
+		      </form>
+		    </div>
+		  </div>
+		</nav>
+		 <br>
+		<ol>
+			{% for title in titles %}
+			{% if title.ismovie == True and title.iswatched == True %}
+			<li>
+				<nav aria-label="...">
+				  <ul class="pagination">
+				    <li class="page-item disabled">
+				      <a class="page-link" href="#" tabindex="-1" style="color: #1f1f1f;" aria-disabled="true">{{title.title}}</a>
+				    </li>
+				    <li class="page-item"><a class="page-link" href="/towatch/delete/{{title.id}}" style="color: #dc3545;">Remove</a></li>
+				  </ul>
+				</nav>
+			</li>
+			<hr style="border: 0px black;">
+			{% endif %}
+			{%endfor%}
+		</ol>
+{% endblock %}
+
+<!-- shows part -->
+{% block show %}
+
+		<!-- jinja2 for loop to add all the shows yet to watch (ismovies = False) -->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+		  <div class="container-xl">
+		    <a class="navbar-brand" href="#"><h3>Shows</h3></a>
+		      <form class="form-inline mt-2 mt-md-0" action="/add/watched/show" method='POST'>
+		        <input class="form-control mr-sm-2" type="text" name="title" placeholder="Show name" aria-label="Add show">
+		        <button class="btn btn-success" type="submit">Add show</button>
+		      </form>
+		    </div>
+		  </div>
+		</nav>
+		<br>
+		<ol>
+			{% for title in titles %}
+			{% if title.ismovie == False and title.iswatched == True %}
+			<li>
+				<nav aria-label="...">
+				  <ul class="pagination">
+				    <li class="page-item disabled">
+				      <a class="page-link" href="#" tabindex="-1" style="color: #1f1f1f;" aria-disabled="true">{{title.title}}</a>
+				    </li>
+				    <li class="page-item"><a class="page-link" href="/towatch/delete/{{title.id}}" style="color: #dc3545;">Remove</a></li>
+				  </ul>
+				</nav>
+			</li>
+			<hr style="border: 0px black;">
+			{% endif %}
+			{%endfor%}
+		</ol>
+
+
+
+{% endblock %}

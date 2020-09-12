@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+		TV Tracker
+	</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+
+
+<body>
+	<header>
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+	      <a class="navbar-brand" href="/towatch">TV Tracker</a>
+		  <div class="collapse navbar-collapse" id="navbarCollapse">
+		    <ul class="navbar-nav mr-auto">
+		      <li class="nav-item">
+		        <a class="nav-link" href="/towatch">To Watch</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="/watched">Watched</a>
+		      </li>
+		    </ul>
+				<form class="form-inline mt-2 mt-md-0" action="/search" method='POST'>
+					<input class="form-control mr-sm-2" type="text" name="title" placeholder="Search" aria-label="Search">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				</form>
+		  </div>
+		</nav>
+	</header>
+	<div class="container">	
+		<div class="Whole_thing">
+			<div class="center">
+				{% block header%} {% endblock %}
+			</div>
+		</div>
+		<div class="movientv">
+			<div>
+				{% block movie %} {% endblock %}
+			</div>
+			<div>
+				{% block show %}{% endblock %}
+			</div>
+		</div>
+	</div>
+</body>
+</html>
